@@ -1,6 +1,14 @@
 pipeline{
+    parameters {
+        gitParameter(
+            name: "BRANCH",
+            type: "PT_TAG", // tags
+            sortMode: "DESCENDING_SMART",
+            defaultValue: "v1.0.1"
+        )
+    }
     agent{
-        label "node"
+        label "master"
     }
     stages{
         stage("A"){
@@ -16,7 +24,7 @@ pipeline{
                 }
                 failure{
                     echo "========A execution failed========"
-                }node
+                }
             }
         }
     }
